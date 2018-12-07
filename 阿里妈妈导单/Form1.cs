@@ -59,7 +59,7 @@ namespace 阿里妈妈导单
             var send1 = new object[4];
             send1[0] = start_time;
             send1[1] = 1;//page参数
-            send1[2] = 2;//订单类别11
+            send1[2] = 2;//订单类别
             send1[3] = -1;
             beginImportPress(send1);
         }
