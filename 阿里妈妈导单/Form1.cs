@@ -279,52 +279,9 @@ namespace 阿里妈妈导单
             }
             
         }
-        
-        //开始菜单
-        private void begin(object sender, EventArgs e)
-        {
-            timer_fz.Enabled = true;
-            timer_xs.Enabled = true;
-            timer_day.Enabled = true;
-        }
-        //停止菜单
-        private void over(object sender, EventArgs e)
-        {
-            timer_fz.Enabled = false;
-            timer_xs.Enabled = false;
-            timer_day.Enabled = false;
-        }
-        //设置账户菜单
-        private void changAcc(object sender, EventArgs e)
-        {
-            group_acc.Visible = true;
-            text_acc.Text = acc;
-            timer_fz.Enabled = false;
-            timer_xs.Enabled = false;
-            timer_day.Enabled = false;
-        }
+    
 
-        //设置账户
-        private void acc_ok_Click(object sender, EventArgs e)
-        {
-            
-            acc = text_acc.Text;
-            this.Text= ConfigHelper.GetAppConfig("AppName") + "_" + acc;
-            ConfigHelper.UpdateAppConfig("acc", acc);
-            group_acc.Visible = false;
-            timer_fz.Enabled = true;
-            timer_xs.Enabled = true;
-            timer_day.Enabled = true;
-
-        }
-        //取消设置账户
-        private void acc_cancel_Click(object sender, EventArgs e)
-        {
-            group_acc.Visible = false;
-            timer_fz.Enabled = true;
-            timer_xs.Enabled = true;
-            timer_day.Enabled = true;
-        }
+      
         //写入log
         public void WriteLog(string str)
         {
