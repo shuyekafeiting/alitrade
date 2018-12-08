@@ -18,6 +18,7 @@ namespace 阿里妈妈导单.Properties
     {
 
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
+        internal string my_soft_mysqlConn;
 
         public static Settings Default
         {
