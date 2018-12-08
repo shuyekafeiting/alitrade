@@ -78,7 +78,7 @@
             this.out_text.Name = "out_text";
             this.out_text.ReadOnly = true;
             this.out_text.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.out_text.Size = new System.Drawing.Size(372, 277);
+            this.out_text.Size = new System.Drawing.Size(437, 277);
             this.out_text.TabIndex = 1;
             this.out_text.Visible = false;
             this.out_text.TextChanged += new System.EventHandler(this.out_text_TextChanged);
@@ -206,6 +206,7 @@
             this.ComboBox_acc.Name = "ComboBox_acc";
             this.ComboBox_acc.Size = new System.Drawing.Size(122, 20);
             this.ComboBox_acc.TabIndex = 10;
+            this.ComboBox_acc.SelectedIndexChanged += new System.EventHandler(this.ComboBox_acc_SelectedIndexChanged);
             // 
             // DateTimePicker_end
             // 
@@ -217,13 +218,13 @@
             // 
             // DateTimePicker_start
             // 
+            this.DateTimePicker_start.Cursor = System.Windows.Forms.Cursors.Default;
             this.DateTimePicker_start.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.DateTimePicker_start.Location = new System.Drawing.Point(105, 167);
             this.DateTimePicker_start.MaxDate = new System.DateTime(9998, 1, 31, 0, 0, 0, 0);
             this.DateTimePicker_start.Name = "DateTimePicker_start";
             this.DateTimePicker_start.Size = new System.Drawing.Size(151, 21);
             this.DateTimePicker_start.TabIndex = 8;
-            this.DateTimePicker_start.UseWaitCursor = true;
             this.DateTimePicker_start.Value = new System.DateTime(2018, 12, 7, 0, 0, 0, 0);
             // 
             // TextBox_page
@@ -288,7 +289,7 @@
             // 
             // Button4
             // 
-            this.Button4.Location = new System.Drawing.Point(388, 167);
+            this.Button4.Location = new System.Drawing.Point(474, 164);
             this.Button4.Name = "Button4";
             this.Button4.Size = new System.Drawing.Size(75, 23);
             this.Button4.TabIndex = 14;
@@ -298,7 +299,7 @@
             // 
             // Button3
             // 
-            this.Button3.Location = new System.Drawing.Point(388, 91);
+            this.Button3.Location = new System.Drawing.Point(474, 88);
             this.Button3.Name = "Button3";
             this.Button3.Size = new System.Drawing.Size(75, 23);
             this.Button3.TabIndex = 13;
@@ -308,7 +309,7 @@
             // 
             // button_start
             // 
-            this.button_start.Location = new System.Drawing.Point(388, 15);
+            this.button_start.Location = new System.Drawing.Point(474, 12);
             this.button_start.Name = "button_start";
             this.button_start.Size = new System.Drawing.Size(75, 23);
             this.button_start.TabIndex = 12;
@@ -318,7 +319,7 @@
             // 
             // button6
             // 
-            this.button6.Location = new System.Drawing.Point(388, 243);
+            this.button6.Location = new System.Drawing.Point(474, 240);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(75, 23);
             this.button6.TabIndex = 15;
@@ -330,7 +331,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(475, 313);
+            this.ClientSize = new System.Drawing.Size(564, 313);
             this.Controls.Add(this.button6);
             this.Controls.Add(this.Button4);
             this.Controls.Add(this.Button3);
@@ -350,6 +351,7 @@
             this.MaximizeBox = false;
             this.Name = "Form1";
             this.Text = "阿里导单";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.GroupBox1.ResumeLayout(false);
             this.GroupBox1.PerformLayout();
             this.ResumeLayout(false);

@@ -120,6 +120,7 @@ namespace 阿里妈妈导单
         private void hanndleStart(object sender, EventArgs e) {
             if (ifProsseStart==0)
             {
+                out_text.Text = "";
                 ifHanddleStart = 1;
                 string start_time = DateTimePicker_start.Value.ToString("yyyy-MM-dd HH:mm:00");
                 //计算开始和结束时间相差的分钟数
@@ -147,11 +148,13 @@ namespace 阿里妈妈导单
                 send[0] = start_time;
                 send[1] = 1;//page参数
                 send[2] = 1;//订单类别
-                send[3] = 3;//请求次数
+                send[3] = times;//请求次数
                 beginImportPress(send);
             }
             else
             {
+                MessageBox.Show("等待结束");
+                return;
                 GroupBox1.Visible = true;
                 out_text.Visible = false;
             }
@@ -383,7 +386,8 @@ namespace 阿里妈妈导单
         {
             //这时后台线程已经完成，并返回了主线程，所以可以直接使用UI控件了 
             ifProsseStart = 0;
-           
+            out_text.Text = "执行结束" + System.Environment.NewLine + out_text.Text;
+
         }
         //导单后台进程运行时调用
         void bw_ProgressChanged(object sender, ProgressChangedEventArgs e)
@@ -475,21 +479,30 @@ namespace 阿里妈妈导单
 
         private void Button3_Click(object sender, EventArgs e)
         {
-            GroupBox1.Visible = false;
-            out_text.Visible = true;
-            DateTime Strtime = DateTime.Parse(DateTime.Now.ToString("yyyy-MM-dd 00:00:00"));
-            //将当前日期减两分钟
-            Strtime = Strtime.AddDays(-1);
-            string start_time = Strtime.ToString("yyyy-MM-dd HH:mm:00");
-            //凌晨一点开始运行
-            string hourTime = DateTime.Now.ToString("HH");
-            if (hourTime == "00")
+            if(ifProsseStart == 1)
             {
-                //运行天数
-                int days;
-                days = int.Parse(day_time.Text) + 1;
-                day_time.Text = Convert.ToString(days);
+                MessageBox.Show("等待结束");
+                return;
             }
+            else
+            {
+                GroupBox1.Visible = true;
+                out_text.Visible = false;
+            }
+            
+        }
+
+        private void ComboBox_acc_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.Text = ConfigHelper.GetAppConfig("AppName") + "_" + ComboBox_acc.Text;
+            string start_time = DateTimePicker_start.Value.ToString("yyyy-MM-dd HH:mm:00");
+            string page = TextBox_page.Text;
+            TextBox_url.Text = importUrl + "start_time=" + start_time + "&order_query_type=create_time&page_no=" + page + "&acc=" + ComboBox_acc.Text;//订单创建
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
         }
     }
         
