@@ -504,6 +504,64 @@ namespace 阿里妈妈导单
         {
 
         }
+
+        private void 开始运行ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (ifProsseStart == 0)
+            {
+                out_text.Text = "";
+                ifHanddleStart = 1;
+                string start_time = DateTimePicker_start.Value.ToString("yyyy-MM-dd HH:mm:00");
+                //计算开始和结束时间相差的分钟数
+                DateTime startTime = Convert.ToDateTime(DateTimePicker_start.Value.ToString("yyyy-MM-dd HH:mm:00"));
+                DateTime endTime = Convert.ToDateTime(DateTimePicker_end.Value.ToString("yyyy-MM-dd HH:mm:00"));
+                TimeSpan ts = endTime - startTime;
+                string days = ts.Days.ToString();
+                string fz = ts.Minutes.ToString();
+                string xs = ts.Hours.ToString();
+                int totalfz = int.Parse(days) * 1440 + int.Parse(xs) * 60 + int.Parse(fz);
+                int times = totalfz / 20;
+                if (times < 0)
+                {
+                    MessageBox.Show("时间选择有误");
+                    return;
+                }
+                string page = TextBox_page.Text;
+                acc = ComboBox_acc.Text;
+                string getUrl = importUrl + "start_time=" + start_time + "&order_query_type=create_time&page_no=" + page + "&acc=" + acc;//订单创建
+                                                                                                                                         //定义参数,导入创建时间订单 
+                GroupBox1.Visible = false;
+                out_text.Visible = true;
+                //导入创建时间订单
+                var send = new object[4];
+                send[0] = start_time;
+                send[1] = 1;//page参数
+                send[2] = 1;//订单类别
+                send[3] = times;//请求次数
+                beginImportPress(send);
+            }
+            else
+            {
+                MessageBox.Show("等待结束");
+                return;
+                GroupBox1.Visible = true;
+                out_text.Visible = false;
+            }
+        }
+
+        private void 配置参数ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (ifProsseStart == 1)
+            {
+                MessageBox.Show("等待结束");
+                return;
+            }
+            else
+            {
+                GroupBox1.Visible = true;
+                out_text.Visible = false;
+            }
+        }
     }
         
 

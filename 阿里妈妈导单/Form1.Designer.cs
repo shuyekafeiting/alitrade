@@ -32,15 +32,8 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.timer_fz = new System.Windows.Forms.Timer(this.components);
             this.out_text = new System.Windows.Forms.TextBox();
-            this.statu = new System.Windows.Forms.Label();
             this.timer_xs = new System.Windows.Forms.Timer(this.components);
             this.timer_day = new System.Windows.Forms.Timer(this.components);
-            this.day_time = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.xs_time = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.fz_time = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
             this.GroupBox1 = new System.Windows.Forms.GroupBox();
             this.Label6 = new System.Windows.Forms.Label();
@@ -58,7 +51,17 @@
             this.Button3 = new System.Windows.Forms.Button();
             this.button_start = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
+            this.statu = new System.Windows.Forms.Label();
+            this.day_time = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.xs_time = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.fz_time = new System.Windows.Forms.Label();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.开始运行ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.配置参数ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.GroupBox1.SuspendLayout();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // timer_fz
@@ -72,25 +75,16 @@
             this.out_text.BackColor = System.Drawing.Color.White;
             this.out_text.Font = new System.Drawing.Font("微软雅黑", 11F);
             this.out_text.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.out_text.Location = new System.Drawing.Point(5, 7);
+            this.out_text.Location = new System.Drawing.Point(0, 25);
             this.out_text.Margin = new System.Windows.Forms.Padding(30, 10, 10, 30);
             this.out_text.Multiline = true;
             this.out_text.Name = "out_text";
             this.out_text.ReadOnly = true;
             this.out_text.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.out_text.Size = new System.Drawing.Size(437, 277);
+            this.out_text.Size = new System.Drawing.Size(442, 292);
             this.out_text.TabIndex = 1;
             this.out_text.Visible = false;
             this.out_text.TextChanged += new System.EventHandler(this.out_text_TextChanged);
-            // 
-            // statu
-            // 
-            this.statu.AutoSize = true;
-            this.statu.Location = new System.Drawing.Point(12, 292);
-            this.statu.Name = "statu";
-            this.statu.Size = new System.Drawing.Size(47, 12);
-            this.statu.TabIndex = 2;
-            this.statu.Text = "已运行:";
             // 
             // timer_xs
             // 
@@ -103,60 +97,6 @@
             this.timer_day.Enabled = true;
             this.timer_day.Interval = 3600000;
             this.timer_day.Tick += new System.EventHandler(this.timer_day_Tick);
-            // 
-            // day_time
-            // 
-            this.day_time.AutoSize = true;
-            this.day_time.Location = new System.Drawing.Point(64, 292);
-            this.day_time.Name = "day_time";
-            this.day_time.Size = new System.Drawing.Size(11, 12);
-            this.day_time.TabIndex = 3;
-            this.day_time.Text = "0";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(84, 292);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(17, 12);
-            this.label2.TabIndex = 4;
-            this.label2.Text = "天";
-            // 
-            // xs_time
-            // 
-            this.xs_time.AutoSize = true;
-            this.xs_time.Location = new System.Drawing.Point(102, 292);
-            this.xs_time.Name = "xs_time";
-            this.xs_time.Size = new System.Drawing.Size(11, 12);
-            this.xs_time.TabIndex = 5;
-            this.xs_time.Text = "0";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(115, 292);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(29, 12);
-            this.label4.TabIndex = 6;
-            this.label4.Text = "小时";
-            // 
-            // fz_time
-            // 
-            this.fz_time.AutoSize = true;
-            this.fz_time.Location = new System.Drawing.Point(148, 292);
-            this.fz_time.Name = "fz_time";
-            this.fz_time.Size = new System.Drawing.Size(11, 12);
-            this.fz_time.TabIndex = 7;
-            this.fz_time.Text = "0";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(162, 292);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(29, 12);
-            this.label3.TabIndex = 8;
-            this.label3.Text = "分钟";
             // 
             // button2
             // 
@@ -183,9 +123,9 @@
             this.GroupBox1.Controls.Add(this.label7);
             this.GroupBox1.Controls.Add(this.label8);
             this.GroupBox1.Controls.Add(this.label9);
-            this.GroupBox1.Location = new System.Drawing.Point(14, 12);
+            this.GroupBox1.Location = new System.Drawing.Point(37, 36);
             this.GroupBox1.Name = "GroupBox1";
-            this.GroupBox1.Size = new System.Drawing.Size(330, 264);
+            this.GroupBox1.Size = new System.Drawing.Size(348, 264);
             this.GroupBox1.TabIndex = 11;
             this.GroupBox1.TabStop = false;
             this.GroupBox1.Text = "输入参数";
@@ -295,26 +235,29 @@
             this.Button4.TabIndex = 14;
             this.Button4.Text = "退出程序";
             this.Button4.UseVisualStyleBackColor = true;
+            this.Button4.Visible = false;
             this.Button4.Click += new System.EventHandler(this.Button4_Click);
             // 
             // Button3
             // 
-            this.Button3.Location = new System.Drawing.Point(474, 88);
+            this.Button3.Location = new System.Drawing.Point(118, 305);
             this.Button3.Name = "Button3";
             this.Button3.Size = new System.Drawing.Size(75, 23);
             this.Button3.TabIndex = 13;
             this.Button3.Text = "配置参数";
             this.Button3.UseVisualStyleBackColor = true;
+            this.Button3.Visible = false;
             this.Button3.Click += new System.EventHandler(this.Button3_Click);
             // 
             // button_start
             // 
-            this.button_start.Location = new System.Drawing.Point(474, 12);
+            this.button_start.Location = new System.Drawing.Point(12, 304);
             this.button_start.Name = "button_start";
             this.button_start.Size = new System.Drawing.Size(75, 23);
             this.button_start.TabIndex = 12;
             this.button_start.Text = "开始运行";
             this.button_start.UseVisualStyleBackColor = true;
+            this.button_start.Visible = false;
             this.button_start.Click += new System.EventHandler(this.hanndleStart);
             // 
             // button6
@@ -325,19 +268,104 @@
             this.button6.TabIndex = 15;
             this.button6.Text = "订单检测";
             this.button6.UseVisualStyleBackColor = true;
+            this.button6.Visible = false;
             this.button6.Click += new System.EventHandler(this.button6_Click);
+            // 
+            // statu
+            // 
+            this.statu.AutoSize = true;
+            this.statu.Location = new System.Drawing.Point(263, 306);
+            this.statu.Name = "statu";
+            this.statu.Size = new System.Drawing.Size(47, 12);
+            this.statu.TabIndex = 2;
+            this.statu.Text = "已运行:";
+            this.statu.Visible = false;
+            // 
+            // day_time
+            // 
+            this.day_time.AutoSize = true;
+            this.day_time.Location = new System.Drawing.Point(315, 306);
+            this.day_time.Name = "day_time";
+            this.day_time.Size = new System.Drawing.Size(11, 12);
+            this.day_time.TabIndex = 3;
+            this.day_time.Text = "0";
+            this.day_time.Visible = false;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(335, 306);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(17, 12);
+            this.label2.TabIndex = 4;
+            this.label2.Text = "天";
+            this.label2.Visible = false;
+            // 
+            // xs_time
+            // 
+            this.xs_time.AutoSize = true;
+            this.xs_time.Location = new System.Drawing.Point(353, 306);
+            this.xs_time.Name = "xs_time";
+            this.xs_time.Size = new System.Drawing.Size(11, 12);
+            this.xs_time.TabIndex = 5;
+            this.xs_time.Text = "0";
+            this.xs_time.Visible = false;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(366, 306);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(29, 12);
+            this.label4.TabIndex = 6;
+            this.label4.Text = "小时";
+            this.label4.Visible = false;
+            // 
+            // fz_time
+            // 
+            this.fz_time.AutoSize = true;
+            this.fz_time.Location = new System.Drawing.Point(399, 306);
+            this.fz_time.Name = "fz_time";
+            this.fz_time.Size = new System.Drawing.Size(11, 12);
+            this.fz_time.TabIndex = 7;
+            this.fz_time.Text = "0";
+            this.fz_time.Visible = false;
+            // 
+            // menuStrip1
+            // 
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.开始运行ToolStripMenuItem,
+            this.配置参数ToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(442, 25);
+            this.menuStrip1.TabIndex = 16;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // 开始运行ToolStripMenuItem
+            // 
+            this.开始运行ToolStripMenuItem.Name = "开始运行ToolStripMenuItem";
+            this.开始运行ToolStripMenuItem.Size = new System.Drawing.Size(68, 21);
+            this.开始运行ToolStripMenuItem.Text = "开始运行";
+            this.开始运行ToolStripMenuItem.Click += new System.EventHandler(this.开始运行ToolStripMenuItem_Click);
+            // 
+            // 配置参数ToolStripMenuItem
+            // 
+            this.配置参数ToolStripMenuItem.Name = "配置参数ToolStripMenuItem";
+            this.配置参数ToolStripMenuItem.Size = new System.Drawing.Size(68, 21);
+            this.配置参数ToolStripMenuItem.Text = "配置参数";
+            this.配置参数ToolStripMenuItem.Click += new System.EventHandler(this.配置参数ToolStripMenuItem_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(564, 313);
+            this.ClientSize = new System.Drawing.Size(442, 327);
             this.Controls.Add(this.button6);
             this.Controls.Add(this.Button4);
             this.Controls.Add(this.Button3);
             this.Controls.Add(this.button_start);
             this.Controls.Add(this.GroupBox1);
-            this.Controls.Add(this.label3);
             this.Controls.Add(this.fz_time);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.xs_time);
@@ -346,14 +374,18 @@
             this.Controls.Add(this.statu);
             this.Controls.Add(this.out_text);
             this.Controls.Add(this.button2);
+            this.Controls.Add(this.menuStrip1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MainMenuStrip = this.menuStrip1;
             this.MaximizeBox = false;
             this.Name = "Form1";
             this.Text = "阿里导单";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.GroupBox1.ResumeLayout(false);
             this.GroupBox1.PerformLayout();
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -361,15 +393,8 @@
 
         #endregion
         private System.Windows.Forms.Timer timer_fz;
-        private System.Windows.Forms.Label statu;
         private System.Windows.Forms.Timer timer_xs;
         private System.Windows.Forms.Timer timer_day;
-        private System.Windows.Forms.Label day_time;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label xs_time;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label fz_time;
-        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button button1;
         internal System.Windows.Forms.TextBox out_text;
         private System.Windows.Forms.Button button2;
@@ -389,6 +414,15 @@
         internal System.Windows.Forms.Button button_start;
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.ComboBox ComboBox_acc;
+        private System.Windows.Forms.Label statu;
+        private System.Windows.Forms.Label day_time;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label xs_time;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label fz_time;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem 开始运行ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 配置参数ToolStripMenuItem;
     }
 }
 
