@@ -188,11 +188,11 @@ namespace 阿里妈妈导单
                         doImortTrade(start_time, page + 1, tradeType, e, bgWorker);
                     }
                 }
-            }catch(Exception )
+            }catch(Exception eo)
             {
                 var send = new object[2];
                 send[0] = "-1";
-                send[1] = "请求服务器错误";
+                send[1] = "请求服务器错误:"+ eo.Message;
                 //e.Result = send;
                 bgWorker.ReportProgress(1, send);
             }
