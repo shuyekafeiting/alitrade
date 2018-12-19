@@ -179,49 +179,60 @@ namespace 阿里妈妈导单
                 Console.WriteLine(getUrl);
                 string re = HttpRequestHelper.HttpGetRequest(getUrl);
                 Console.WriteLine(re);
-                ReObject Resault = JsonConvert.DeserializeObject<ReObject>(re);
-                string ifEnd = Resault.ifEnd;
-                string code = Resault.code;
-                if (code == "-1")
+                try
                 {
-                    //报错
-                    string result = Resault.data;
-                    var send = new object[2];
-                    send[0] = code;
-                    send[1] = result;
-                    //e.Result = send;汇报结束
-                    bgWorker.ReportProgress(1, send);
-                }
-                else
-                {
-                    if (ifEnd == "1")
+                    ReObject Resault = JsonConvert.DeserializeObject<ReObject>(re);
+                    string ifEnd = Resault.ifEnd;
+                    string code = Resault.code;
+                    if (code == "-1")
                     {
-                        //结束
-                        string result = Resault.startTime + " " + tradeTypeStr + "P" + page + ": 共" + Resault.totalNum + "单,插入" + Resault.newNum + "单,更新" + Resault.updateNum + "单";
+                        //报错
+                        string result = Resault.data;
                         var send = new object[2];
                         send[0] = code;
                         send[1] = result;
-                        //e.Result = send;
+                        //e.Result = send;汇报结束
                         bgWorker.ReportProgress(1, send);
                     }
                     else
                     {
-                        //下一页
-                        string result = Resault.startTime + " " + tradeTypeStr + "P" + page + ": 共" + Resault.totalNum + "单,插入" + Resault.newNum + "单,更新" + Resault.updateNum + "单";
-                        var send = new object[2];
-                        send[0] = code;
-                        send[1] = result;
-                        //e.Result = send;
-                        bgWorker.ReportProgress(1, send);
-                        // handleResult(code, result);
-                        doImortTrade(start_time, page + 1, tradeType, e, bgWorker);
+                        if (ifEnd == "1")
+                        {
+                            //结束
+                            string result = Resault.startTime + " " + tradeTypeStr + "P" + page + ": 共" + Resault.totalNum + "单,插入" + Resault.newNum + "单,更新" + Resault.updateNum + "单";
+                            var send = new object[2];
+                            send[0] = code;
+                            send[1] = result;
+                            //e.Result = send;
+                            bgWorker.ReportProgress(1, send);
+                        }
+                        else
+                        {
+                            //下一页
+                            string result = Resault.startTime + " " + tradeTypeStr + "P" + page + ": 共" + Resault.totalNum + "单,插入" + Resault.newNum + "单,更新" + Resault.updateNum + "单";
+                            var send = new object[2];
+                            send[0] = code;
+                            send[1] = result;
+                            //e.Result = send;
+                            bgWorker.ReportProgress(1, send);
+                            // handleResult(code, result);
+                            doImortTrade(start_time, page + 1, tradeType, e, bgWorker);
+                        }
                     }
                 }
-            }catch(Exception )
+                catch(Exception e1) {
+                    var send = new object[2];
+                    send[0] = "-1";
+                    send[1] = "请求服务器错误:" + re;
+                    //e.Result = send;
+                    bgWorker.ReportProgress(1, send);
+                }
+               
+            }catch(Exception eo)
             {
                 var send = new object[2];
                 send[0] = "-1";
-                send[1] = "请求服务器错误";
+                send[1] = "请求服务器错误:"+eo.Message;
                 //e.Result = send;
                 bgWorker.ReportProgress(1, send);
             }
