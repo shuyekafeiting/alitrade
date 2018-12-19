@@ -150,44 +150,55 @@ namespace 阿里妈妈导单
                 Console.WriteLine(getUrl);
                 string re = HttpRequestHelper.HttpGetRequest(getUrl);
                 Console.WriteLine(re);
-                ReObject Resault = JsonConvert.DeserializeObject<ReObject>(re);
-                string ifEnd = Resault.ifEnd;
-                string code = Resault.code;
-                if (code == "-1")
+                try
                 {
-                    //报错
-                    string result = Resault.data;
-                    var send = new object[2];
-                    send[0] = code;
-                    send[1] = result;
-                    //e.Result = send;汇报结束
-                    bgWorker.ReportProgress(1, send);
-                }
-                else
-                {
-                    if (ifEnd == "1")
+                    ReObject Resault = JsonConvert.DeserializeObject<ReObject>(re);
+                    string ifEnd = Resault.ifEnd;
+                    string code = Resault.code;
+                    if (code == "-1")
                     {
-                        //结束
-                        string result = Resault.startTime + " " + tradeTypeStr + "P" + page + ": 共" + Resault.totalNum + "单,插入" + Resault.newNum + "单,更新" + Resault.updateNum + "单";
+                        //报错
+                        string result = Resault.data;
                         var send = new object[2];
                         send[0] = code;
                         send[1] = result;
-                        //e.Result = send;
+                        //e.Result = send;汇报结束
                         bgWorker.ReportProgress(1, send);
                     }
                     else
                     {
-                        //下一页
-                        string result = Resault.startTime + " " + tradeTypeStr + "P" + page + ": 共" + Resault.totalNum + "单,插入" + Resault.newNum + "单,更新" + Resault.updateNum + "单";
-                        var send = new object[2];
-                        send[0] = code;
-                        send[1] = result;
-                        //e.Result = send;
-                        bgWorker.ReportProgress(1, send);
-                        // handleResult(code, result);
-                        doImortTrade(start_time, page + 1, tradeType, e, bgWorker);
+                        if (ifEnd == "1")
+                        {
+                            //结束
+                            string result = Resault.startTime + " " + tradeTypeStr + "P" + page + ": 共" + Resault.totalNum + "单,插入" + Resault.newNum + "单,更新" + Resault.updateNum + "单";
+                            var send = new object[2];
+                            send[0] = code;
+                            send[1] = result;
+                            //e.Result = send;
+                            bgWorker.ReportProgress(1, send);
+                        }
+                        else
+                        {
+                            //下一页
+                            string result = Resault.startTime + " " + tradeTypeStr + "P" + page + ": 共" + Resault.totalNum + "单,插入" + Resault.newNum + "单,更新" + Resault.updateNum + "单";
+                            var send = new object[2];
+                            send[0] = code;
+                            send[1] = result;
+                            //e.Result = send;
+                            bgWorker.ReportProgress(1, send);
+                            // handleResult(code, result);
+                            doImortTrade(start_time, page + 1, tradeType, e, bgWorker);
+                        }
                     }
+                }catch(Exception e2)
+                {
+                    var send = new object[2];
+                    send[0] = "-1";
+                    send[1] = re;
+                    //e.Result = send;
+                    bgWorker.ReportProgress(1, send);
                 }
+                
             }catch(Exception eo)
             {
                 var send = new object[2];
@@ -221,59 +232,70 @@ namespace 阿里妈妈导单
                 Console.WriteLine(getUrl);
                 string re = HttpRequestHelper.HttpGetRequest(getUrl);
                 Console.WriteLine(re);
-                ReObject Resault = JsonConvert.DeserializeObject<ReObject>(re);
-                string ifEnd = Resault.ifEnd;
-                string code = Resault.code;
-                if (doTimes >= 0)
+                try
                 {
-                    if (code == "-1")
+                    ReObject Resault = JsonConvert.DeserializeObject<ReObject>(re);
+                    string ifEnd = Resault.ifEnd;
+                    string code = Resault.code;
+                    if (doTimes >= 0)
                     {
-                        //报错
-                        string result = Resault.data;
-                        var send = new object[2];
-                        send[0] = code;
-                        send[1] = result;
-                        //e.Result = send;汇报结束
-                        bgWorker.ReportProgress(1, send);
-                    }
-                    else
-                    {
-                        if (ifEnd == "1")
+                        if (code == "-1")
                         {
-                            doTimes = doTimes - 1;
-                            //结束
-                            string result = Resault.startTime + " " + tradeTypeStr + "P" + page + ": 共" + Resault.totalNum + "单,插入" + Resault.newNum + "单,更新" + Resault.updateNum + "单";
+                            //报错
+                            string result = Resault.data;
                             var send = new object[2];
                             send[0] = code;
                             send[1] = result;
-                            //e.Result = send;
+                            //e.Result = send;汇报结束
                             bgWorker.ReportProgress(1, send);
-                            //handleResult(code, result);
-                            //增加20分钟继续
-                            DateTime t1 = Convert.ToDateTime(Resault.startTime);
-                            t1 = t1.AddMinutes(20);
-                            string t2 = t1.ToString("yyyy-MM-dd HH:mm:00");
-                            doImortTrade1(t2, 1, tradeType, doTimes, e, bgWorker);
                         }
                         else
                         {
-                            //下一页
-                            string result = Resault.startTime + " " + tradeTypeStr + "P" + page + ":  共" + Resault.totalNum + "单,插入" + Resault.newNum + "单,更新" + Resault.updateNum + "单";
-                            var send = new object[2];
-                            send[0] = code;
-                            send[1] = result;
-                            //e.Result = send;
-                            bgWorker.ReportProgress(1, send);
-                            //handleResult(code, result);
-                            doImortTrade1(start_time, page + 1, tradeType, doTimes, e, bgWorker);
+                            if (ifEnd == "1")
+                            {
+                                doTimes = doTimes - 1;
+                                //结束
+                                string result = Resault.startTime + " " + tradeTypeStr + "P" + page + ": 共" + Resault.totalNum + "单,插入" + Resault.newNum + "单,更新" + Resault.updateNum + "单";
+                                var send = new object[2];
+                                send[0] = code;
+                                send[1] = result;
+                                //e.Result = send;
+                                bgWorker.ReportProgress(1, send);
+                                //handleResult(code, result);
+                                //增加20分钟继续
+                                DateTime t1 = Convert.ToDateTime(Resault.startTime);
+                                t1 = t1.AddMinutes(20);
+                                string t2 = t1.ToString("yyyy-MM-dd HH:mm:00");
+                                doImortTrade1(t2, 1, tradeType, doTimes, e, bgWorker);
+                            }
+                            else
+                            {
+                                //下一页
+                                string result = Resault.startTime + " " + tradeTypeStr + "P" + page + ":  共" + Resault.totalNum + "单,插入" + Resault.newNum + "单,更新" + Resault.updateNum + "单";
+                                var send = new object[2];
+                                send[0] = code;
+                                send[1] = result;
+                                //e.Result = send;
+                                bgWorker.ReportProgress(1, send);
+                                //handleResult(code, result);
+                                doImortTrade1(start_time, page + 1, tradeType, doTimes, e, bgWorker);
+                            }
                         }
                     }
+                }catch(Exception e2)
+                {
+                    var send = new object[2];
+                    send[0] = "-1";
+                    send[1] = "链接服务器出错" + re;
+                    //e.Result = send;
+                    bgWorker.ReportProgress(1, send);
                 }
+                
             }
-            catch (Exception) {
+            catch (Exception e1) {
                 var send = new object[2];
                 send[0] = "-1";
-                send[1] = "链接服务器出错";
+                send[1] = "链接服务器出错"+e1.Message;
                 //e.Result = send;
                 bgWorker.ReportProgress(1, send);
             }
